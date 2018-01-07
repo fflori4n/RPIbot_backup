@@ -1,0 +1,19 @@
+Mat calibrateBRGHT(Mat mat2calib){	// CALIBRATE MAT BRIGHTNESS ***********************************************
+
+	mat2calib = mat2calib * reg;
+	Rect area( 0, 0, 25, 25 );
+	//copies input image in roi
+	//Mat calibarea = mat2calib( area );
+	//computes mean over roi
+	Scalar avrcolor = mean( mat2calib );
+	//prints out only .val[0] since image was grayscale
+	avrgbrght = round((avrcolor[0] + avrcolor[1] + avrcolor[2])/3);
+	if (avrgbrght < 120)
+		reg += 0.1;
+	else if(avrgbrght > 134)
+		reg -= 0.1;
+	/*else
+		cout << "IMG brightness calibrated."<< endl;
+	cout << avrgbrght << endl;*/
+	return mat2calib;
+}
